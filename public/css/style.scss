@@ -1,0 +1,50 @@
+body > header {
+	display: flex;
+	align-items: center;
+	height: 100px;
+	h1 {
+
+	}
+	nav {
+		flex: 1;
+		text-align: right;
+
+	}
+}
+
+h2 {
+	> a {
+		float: right;
+		font-size: 0.5em;
+		margin-top: 0.75em;
+	}
+}
+
+table {
+	width: 100%;
+	td {
+		text-align: center;
+		&:first-of-type {
+			text-align: left;
+		}
+	}
+}
+
+.inner-menu {
+	> a {
+		display: block;
+	}
+}
+
+@import 'views/Home';
+@import 'views/About';
+@import 'views/Login';
+@import 'views/Logout';
+@import 'views/Simulations';
+@import 'views/SimulationsAdd';
+@import 'views/Simulation';
+@import 'views/MySimulations';
+@import 'views/Users';
+@import 'views/UsersAdd';
+@import 'views/User';
+@import 'views/UserEdit';

@@ -1,0 +1,19 @@
+<form ng-submit="submitHandler()">
+    <h2>Create User</h2>
+
+    <div>
+        <label>Username</label>
+        <input ng-model="data.username" type="text"/>
+    </div>
+    <div>
+        <label>Password</label>
+        <input ng-model="data.password" type="password"/>
+    </div>
+    <div>
+        <label>Group</label>
+        <select ng-model="data.group" ng-options="group.id as group.name for group in ref.groups"></select>
+    </div>
+    <div>
+        <input type="submit" class="button-primary" value="Create User"/>
+    </div>
+</form>

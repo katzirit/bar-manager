@@ -1,0 +1,23 @@
+<h2>{{user.username}} <a ui-sref="userEdit({id:user.id})"><i class="fa fa-pencil"></i> Edit</a></h2>
+
+<h2>User Simulations</h2>
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Date</td>
+        <td>Number of runs</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="simulation in simulations">
+        <td><a ui-sref="simulation({id:simulation.id})">{{simulation.id}}</a></td>
+        <td>{{simulation.createdAt | date:'short'}}</td>
+        <td>{{simulation.numOfRuns}}</td>
+        <td>
+            <button ui-sref="simulation({id:simulation.id})"><i class="fa fa-list"></i> View</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

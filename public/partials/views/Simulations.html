@@ -1,0 +1,21 @@
+<h2>Simulations <a ui-sref="simulationsAdd"><i class="fa fa-plus-circle"></i> Create Simulation</a></h2>
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Date</td>
+        <td>User</td>
+        <td>Number of runs</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="simulation in simulations">
+        <td><a ui-sref="simulation({id:simulation.id})">{{simulation.id}}</a></td>
+        <td>{{simulation.createdAt | date:'short'}}</td>
+        <td><a ui-sref="user({id:simulation.UserId})">{{simulation.User.username}}</a></td>
+        <td>{{simulation.numOfRuns}}</td>
+        <td><button ui-sref="simulation({id:simulation.id})"><i class="fa fa-list"></i> View</button></td>
+    </tr>
+    </tbody>
+</table>

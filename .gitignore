@@ -1,0 +1,5 @@
+*.zip
+*.log
+*.map
+
+node_modules

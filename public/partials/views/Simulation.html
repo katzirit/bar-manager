@@ -1,0 +1,40 @@
+<h2>Simulation</h2>
+<div>id: <b>{{simulation.id}}</b></div>
+<div>UserId: <b>{{simulation.UserId}}</b></div>
+<div>createdAt: <b>{{simulation.createdAt}}</b></div>
+
+<h2>Simulation Data</h2>
+<div>costumers per hour: <b>{{simulation.data.costumers_per_hour}}</b></div>
+<div>number of waiters: <b>{{simulation.data.num_of_waiters}}</b></div>
+<div>number of table: <b>{{simulation.data.table_num}}</b></div>
+<div>shift length: <b>{{simulation.data.shift_length}}</b></div>
+<div>average service time: <b>{{simulation.data.avg_service_time}}</b></div>
+<div>average service div: <b>{{simulation.data.avg_service_time}}</b></div>
+
+<h2>Simulation Results</h2>
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>average line</td>
+        <td>average service</td>
+        <td>beer</td>
+        <td>soft drinks</td>
+        <td>booz</td>
+        <td>profit</td>
+        <td>employee efficiency</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="result in simulation.SimulationResults">
+        <td>{{result.id}}</td>
+        <td>{{result.resultData.avg_line}}</td>
+        <td>{{result.resultData.avg_service}}</td>
+        <td>{{result.resultData.beer}}</td>
+        <td>{{result.resultData.soft_drinks}}</td>
+        <td>{{result.resultData.booz}}</td>
+        <td>{{result.resultData.profit}}</td>
+        <td>{{result.resultData.employee_efficiency}}</td>
+    </tr>
+    </tbody>
+</table>

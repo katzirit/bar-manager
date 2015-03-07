@@ -1,0 +1,36 @@
+<form ng-submit="submitHandler()">
+    <h2>Create Simulation</h2>
+
+    <div>
+        <label>costumers per hour</label>
+        <input ng-model="data.data.costumers_per_hour" type="number"/>
+    </div>
+    <div>
+        <label>number of waiters</label>
+        <input ng-model="data.data.num_of_waiters" type="number"/>
+    </div>
+    <div>
+        <label>number of table</label>
+        <input ng-model="data.data.table_num" type="number"/>
+    </div>
+    <div>
+        <label>shift length</label>
+        <input ng-model="data.data.shift_length" type="number"/>
+    </div>
+    <div>
+        <label>average service time</label>
+        <input ng-model="data.data.avg_service_time" type="number"/>
+    </div>
+    <div>
+        <label>average service div</label>
+        <input ng-model="data.data.avg_service_div" type="number"/>
+    </div>
+
+    <div>
+        <label>Number of runs</label>
+        <input ng-model="data.numOfRuns" type="number" min="2" max="8"/>
+    </div>
+    <div>
+        <input type="submit" class="button-primary" value="Run Simulation"/>
+    </div>
+</form>
