@@ -1,3 +1,4 @@
+// crates user's table in the database by using node.js Sequelize 2.0.0 
 "use strict";
 module.exports = {
   up: function(migration, DataTypes, done) {
