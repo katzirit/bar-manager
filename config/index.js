@@ -1,3 +1,4 @@
+//db connect
 module.exports = {
     username: "root",
     password: "12345",
