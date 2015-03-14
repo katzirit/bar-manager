@@ -20,3 +20,8 @@ table {
 
 .inner-menu > a {
   display: block; }
+
+form .error {
+  display: inline-block;
+  color: red;
+}
