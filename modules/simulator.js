@@ -1,51 +1,113 @@
 var _ = require('lodash');
 var results = [];
 var events = [];
-var tMax = data.shift_length;
+
 var tNow = 0.0
 var tableIn = 0;
 var table = 0;
-var tableMax = data.table_num;
+var tMax = 0;
+var tableMax = 0;
+var maxEmployee = 0     ;
+var costumers_per_hour =0       ;
+var avg_service_time = 0        ;
+var avg_service_div = 0     ;
 var tSit = 0.0;
-var maxEmployee = data.num_of_waiters;
+
 var server = 1;
 var wait = 0;
+var waitLast = 0;
 var line = 0;
 var lChange = 0;
 var lIn = 0;
 var serverLast = 0;
 var waitLast = 0.0;
 var minWage = 200;
-var costumers_per_hour = data.costumers_per_hour;
-var avg_service_time = data.avg_service_time;
-var avg_service_div = data.avg_service_div;
+
 var result_index = 0;
+var waitAvg=0;
+var serverAVG=0;
+var sitAVG=0;
 
 function costumerArrive() {
     costumerArriveCreation();
     if (table < tableMax){
-        
+        table++;
+        tableIn++;
+        if (server>0){
+            server --;
+            serviceOverCreation();
+        }
+        else {
+            waitAvg=waitAvg + ( tNow - tLast ) * wait
+            waitLast = tNow;
+            wait++;
+        }
     }
+    else{
+        var i = Math.random
+        if (i<0.5){
+            line++;
+            lIn++;
+            lChange++;
+        } 
+      
 }
 
 function costumerArriveCreation() {
+    var x = math.norm(costumers_per_hour);
+    events[index].code_of_event=1;
+    events.time_of_event=tNow+x;
 
 }
 
 function serviceOver() {
-
+    wait--;
+    var i = Math.random;
+    if (i<0.4){
+       result.beer++;
+    }
+    else if (i<0.8){
+        result.booz++
+    }
+    else {
+        result.soft_drinks++;
+    }
+    i = Math.random;
+    if (i<0.7){
+        if (wait=0){
+            serverAVG=serverAVG+(tNow - tMax)*server;
+            serverLast=tNow;
+            server++;
+        }
+        else{
+            serviceOverCreation();
+        }
+    }
+    else{
+        clearTableCreation();
+    }
 }
 
 function serviceOverCreation() {
-
+    var x = math.exp(avg_service_time);
+    events[index].code_of_event=2;
+    events.time_of_event=tNow+x;
 }
 
 function clearTable() {
-
+    table--;
+    sitAVG = sitAVG + (tNow - tSit);
+    tSit=tNow;
+    if (line>0){
+        l--;
+        lChange++;
+    }
 }
 
 function clearTableCreation() {
-
+    var x = 0.25;
+    events[index].code_of_event=3;
+    events.time_of_event=tNow+x;
 }
 
 
@@ -58,8 +120,15 @@ module.exports = function(data) {
      data.avg_service_time
      data.avg_service_time
     */
+    tMax = data.shift_length;
+    tableMax = data.table_num;
+    maxEmployee = data.num_of_waiters;
+    costumers_per_hour = data.costumers_per_hour;
+    avg_service_time = data.avg_service_time;
+    avg_service_div = data.avg_service_div;
+    var result_index = 0;
 
-    results.push({
+    results[result_index].push({
         avg_line: 0,
         avg_service: 0,
         beer: 0,
@@ -68,14 +137,14 @@ module.exports = function(data) {
         profit: 0,
         employee_efficiency: 0.0
     });
-    events.push({
+    events[0].push({
         time_of_event: 0.0,
         code_of_event: 1,
     });
 
     for (server = 0; server == maxEmployee; server++) {
-        var index = 0;
-        while (tNow < tMax && table = 0) {
+        var index = 1;
+        while (tNow < tMax && table == 0) {
             switch (events[index].code_of_event) {
                 case 1:
                     costumerArrive();
@@ -86,12 +155,21 @@ module.exports = function(data) {
                 case 3:
                     clearTable();
                     break;
+                
+
             }
-            index++;
-            result_index = 0++;
-
-
+            index=index+1;
         }
+        results[result_index].push({
+                avg_line: lIn/lChange,
+                avg_service: (waitAvg+sitAVG)/tableIn,
+                beer: beer,
+                soft_drinks: soft_drinks,
+                booz: booz,
+                profit:(beer*30+booz*18+soft_drinks*9)-(server*minWage) ,
+                employee_efficiency: serverAVG/(tMax*server)
+        });
+        result_index = result_index + 1;
     }
 
     return results;
@@ -112,3 +190,5 @@ module.exports = function(data) {
 
     return results;*/
 };
+
+}

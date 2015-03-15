@@ -12,6 +12,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     passport = require('passport'),
     session = require('express-session');
+    math = require('mathjs');
 
 var app = module.exports = express();
 
