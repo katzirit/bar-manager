@@ -107,9 +107,6 @@ app.service('user', function ($http, $rootScope, $cookies, $state) {
                 .success(function (user) {
                     $cookies.user = JSON.stringify(user);
                     $rootScope.user = user;
-                })
-                .error(function (res) {
-                    console.error(res);
                 });
         },
         logout: logout,
