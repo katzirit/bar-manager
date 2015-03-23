@@ -3,34 +3,34 @@
 
     <div>
         <label>costumers per hour</label>
-        <input ng-model="simulation.data.costumers_per_hour" type="number"/>
+        <input ng-model="data.data.costumers_per_hour" type="number"/>
     </div>
     <div>
         <label>number of waiters</label>
-        <input ng-model="simulation.data.num_of_waiters" type="number"/>
+        <input ng-model="data.data.num_of_waiters" type="number"/>
     </div>
     <div>
         <label>number of table</label>
-        <input ng-model="simulation.data.table_num" type="number"/>
+        <input ng-model="data.data.table_num" type="number"/>
     </div>
     <div>
         <label>shift length</label>
-        <input ng-model="simulation.data.shift_length" type="number"/>
+        <input ng-model="data.data.shift_length" type="number"/>
     </div>
     <div>
         <label>average service time</label>
-        <input ng-model="simulation.data.avg_service_time" type="number"/>
+        <input ng-model="data.data.avg_service_time" type="number"/>
     </div>
     <div>
         <label>average service div</label>
-        <input ng-model="simulation.data.avg_service_div" type="number"/>
+        <input ng-model="data.data.avg_service_div" type="number"/>
     </div>
+
     <div>
         <label>Number of runs</label>
-        <input ng-model="simulation.numOfRuns" type="number" min="2" max="8"/>
+        <input ng-model="data.numOfRuns" type="number" min="2" max="8"/>
     </div>
     <div>
         <input type="submit" class="button-primary" value="Run Simulation"/>
-        <div class="error" ng-if="error">{{error}}</div>
     </div>
 </form>

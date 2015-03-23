@@ -81,20 +81,19 @@ module.exports.simulationsCreate = function (req, res) {
  * @param res
  */
 module.exports.simulation = function (req, res) {
-    Simulation.find({
+    req.user.getSimulations({
         where: {id: req.params.id},
         include: [SimulationResult, User]
-    }).then(function (simulation) {
-        if(!simulation) {
-            return res.status(404).json({info: 'cannot find simulation'});
-        }
-        if(simulation.UserId !== req.user.id && req.user.GroupId !== 1) {
-            return res.status(403).json({info: 'you are not allowed in here'});
+    }).then(function (results) {
+        var simulation = results[0];
+        if (!simulation) {
+            return res.status(400).json({info: 'cannot find simulation'});
         }
 
         // Convert Simulation data back to object from JSON
         simulation.data = JSON.parse(simulation.data);
 
+        //
         _.each(simulation.SimulationResults, function (result) {
             result.resultData = JSON.parse(result.resultData);
         });

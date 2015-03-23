@@ -4,8 +4,8 @@ app.controller('LoginCtrl', function ($scope, $state, user) {
             .success(function () {
                 $state.go('home');
             })
-            .error(function (response) {
-                $scope.error = response.info;
+            .error(function (data) {
+                console.error(data.info);
             });
     };
 });

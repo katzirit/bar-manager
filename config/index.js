@@ -1,8 +1,8 @@
 //db connect
 module.exports = {
-    username: "katzirit",
-    password: "katzirit66",
+    username: "root",
+    password: "12345",
     database: "barmanager",
-    host: "104.236.10.41",
+    host: "localhost",
     dialect: "mysql"
 };
