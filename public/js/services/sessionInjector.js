@@ -10,6 +10,7 @@ app.factory('sessionInjector', function ($q, $rootScope) {
             } else if (e.status === 403) {
                 $rootScope.$emit('unauthenticated');
             } else {
+                console.log(e);
                 console.error(e);
             }
             return $q.reject(e);

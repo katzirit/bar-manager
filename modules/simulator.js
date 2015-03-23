@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var math = require('mathjs');
 var results = [];
 var events = [];
 
@@ -7,7 +8,7 @@ var tableIn = 0;
 var table = 0;
 var tMax = 0;
 var tableMax = 0;
-var maxEmployee = 0     ;
+var maxEmployee = 0;
 var costumers_per_hour =0       ;
 var avg_service_time = 0        ;
 var avg_service_div = 0     ;
@@ -44,7 +45,7 @@ function costumerArrive() {
         }
     }
     else{
-        var i = Math.random
+        var i = math.random
         if (i<0.5){
             line++;
             lIn++;
@@ -56,23 +57,23 @@ function costumerArrive() {
 function costumerArriveCreation() {
     var x = math.norm(costumers_per_hour);
     events[index].code_of_event=1;
-    events.time_of_event=tNow+x;
+    events[index].time_of_event=tNow+x;
 
 }
 
 function serviceOver() {
     wait--;
-    var i = Math.random;
+    var i = math.random;
     if (i<0.4){
-       result.beer++;
+       result[result_index].beer++;
     }
     else if (i<0.8){
-        result.booz++
+        result[result_index].booz++
     }
     else {
-        result.soft_drinks++;
+        result[result_index].soft_drinks++;
     }
-    i = Math.random;
+    i = math.random();
     if (i<0.7){
         if (wait=0){
             serverAVG=serverAVG+(tNow - tMax)*server;
@@ -91,7 +92,7 @@ function serviceOver() {
 function serviceOverCreation() {
     var x = math.exp(avg_service_time);
     events[index].code_of_event=2;
-    events.time_of_event=tNow+x;
+    events[index].time_of_event=tNow+x;
 }
 
 function clearTable() {
@@ -107,12 +108,12 @@ function clearTable() {
 function clearTableCreation() {
     var x = 0.25;
     events[index].code_of_event=3;
-    events.time_of_event=tNow+x;
+    events[index].time_of_event=tNow+x;
 }
 
 
 module.exports = function(data) {
-    /*
+   /*
      data.costumers_per_hour
      data.num_of_waiters
      data.table_num
@@ -120,7 +121,7 @@ module.exports = function(data) {
      data.avg_service_time
      data.avg_service_time
     */
-    tMax = data.shift_length;
+  /*   tMax = data.shift_length;
     tableMax = data.table_num;
     maxEmployee = data.num_of_waiters;
     costumers_per_hour = data.costumers_per_hour;
@@ -137,7 +138,7 @@ module.exports = function(data) {
         profit: 0,
         employee_efficiency: 0.0
     });
-    events[0].push({
+    events.push({
         time_of_event: 0.0,
         code_of_event: 1,
     });
@@ -145,6 +146,7 @@ module.exports = function(data) {
     for (server = 0; server == maxEmployee; server++) {
         var index = 1;
         while (tNow < tMax && table == 0) {
+
             switch (events[index].code_of_event) {
                 case 1:
                     costumerArrive();
@@ -158,9 +160,9 @@ module.exports = function(data) {
                 
 
             }
-            index=index+1;
+           index=index+1;
         }
-        results[result_index].push({
+        results.push({
                 avg_line: lIn/lChange,
                 avg_service: (waitAvg+sitAVG)/tableIn,
                 beer: beer,
@@ -173,10 +175,10 @@ module.exports = function(data) {
     }
 
     return results;
-
+*/
 
     // Dummy simulator
-/*    _.times(numOfRuns, function() {
+    _.times(numOfRuns, function() {
         results.push({
             avg_line: Math.round(Math.random() * 10),
             avg_service: Math.round(Math.random() * 10),
@@ -188,7 +190,7 @@ module.exports = function(data) {
         });
     });
 
-    return results;*/
+    return results;
 };
 
 }
