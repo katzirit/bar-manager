@@ -15,11 +15,52 @@ var table_max;
 var table_in = 0;
 var server;
 var wait_avg=0;
-var wait=0
+var wait=0;
 var wait_last=0;
 var l;
 var l_in;
 var l_change;
+var server_avg;
+var server_last;
+var sit_avg;
+var tSit;
+var costomer_arrive;
+var avg_service_time;
+var service_div;
+
+function costomerArriveCreate(){
+     var u;
+     var x;
+     u = Math.random();
+     x = (-1 / costomer_arrive)*Math.log(1-u);
+     var timediv1 = x + tnow;
+     events.push({
+            time: timediv1,
+            code: 1
+        });
+
+}
+
+function serviceEndCreate(){
+    var u1 = Math.random();
+    var u2 = Math.random();
+    var x = Math.sqrt(-2 * Math.log(u1)) * Math.Cos((2 * Math.PI()) * u2);
+    var myNorm = avg_service_time + Math.sqrt(service_div) * x;
+    var timediv = tnow + myNorm;
+     events.push({
+            time: timediv,
+            code: 2
+        });
+}
+
+function clearTableCreate(){
+     var timediv2 = tnow + 0.1;
+     events.push({
+            time:timediv2,
+            code: 3
+        });
+}
+
 
 function costomerArrive(){
     costomerArriveCreate();
@@ -46,26 +87,43 @@ function costomerArrive(){
 
 }
 
-function costomerArriveCreate(){
-     events[0].time=3.0;
-}
-
-
 function serviceEnd(){
-     events[0].time=3.0;
+     wait--;
+     var disc = Math.random();
+     var isStay = Math.random();
+     if (disc() < 0.4){
+        beer++;
+     } else if (disc < 0.8){
+        booz++;
+     } else {
+        soft_drinks++;
+     }
+     if (isStay <0.7){
+        if (wait==0){
+            server_avg = server_avg + (tnow - server_last) * server;
+            server_last = tnow;
+            server++;
+        } else{
+            serviceEndCreate();
+        }
+     } else {
+        clearTableCreate();
+     }
+
 }
 
-function serviceEndCreate(){
-     events[0].time=3.0;
-}
 
 function clearTable(){
-     events[0].time=3.0;
+     table_num--;
+     sit_avg = server_avg + (tnow - tSit);
+     tSit = tnow;
+     if (l>0){
+        l--;
+        l_change++;
+     }
+
 }
 
-function clearTableCreate(){
-     events[0].time=3.0;
-}
 
 module.exports = function (data, numOfRuns) {
     /*
@@ -76,23 +134,30 @@ module.exports = function (data, numOfRuns) {
      data.avg_service_time
      data.avg_service_time
     */
+    avg_service_time = 0.25;
+    service_div = 0.1;
     server = 1;
-    tmax = 2;
+    tmax = 8;
     tnow=0.0;
     l = 0;
     l_in = 0.0;
     l_change = 0;
-    table_max = data.table_num;
+    server_avg = 0;
+    server_last = 0;
+    sit_avg = 0;
+    tSit = 0;
+    table_max = 20;
+    costomer_arrive = 5;
     var results = [];
     var i =0;
      events.push({
-            time: 1.0,
+            time: 0.0,
             code: 1
         });
 
 
 
-    while ((tmax>tnow) && (table_num==0)){
+    while ((tmax>tnow)){
             tnow = events[i].time;
             switch (events[i].code) {
                 case 1:
@@ -104,20 +169,17 @@ module.exports = function (data, numOfRuns) {
                 case 3:
                     clearTable();
                     break;
-            i++;
-            break;
-                
             }
-            
+            i++;       
 
      }
 
     // Dummy simulator
     _.times(numOfRuns, function () {
         results.push({
-            avg_line: events[i].time,
-            avg_service:events[i].code,
-            beer: beer,
+            avg_line: avg_line,
+            avg_service: avg_service,
+            beer: Math.random(),
             soft_drinks: soft_drinks,
             booz: booz,
             profit: profit,
