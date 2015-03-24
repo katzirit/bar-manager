@@ -11,9 +11,39 @@ var events = [];
 var tmax ;
 var tnow ;
 var table_num = 0;
+var table_max;
+var table_in = 0;
+var server;
+var wait_avg=0;
+var wait=0
+var wait_last=0;
+var l;
+var l_in;
+var l_change;
 
 function costomerArrive(){
-     events[0].time=3.0;
+    costomerArriveCreate();
+    if (table_num<table_max){
+        table_num++;
+        table_in++;
+        if (server>0){
+            server--;
+            serviceEndCreate();
+        } else {
+            wait_avg = wait_avg+(tnow - wait_last)*wait;
+            wait_last = tnow;
+            wait++;
+        }
+
+    } else{
+        if (Math.random()>0.5) {
+            l++;
+            l_in++;
+            l_change++;
+        }
+
+    }
+
 }
 
 function costomerArriveCreate(){
@@ -46,8 +76,13 @@ module.exports = function (data, numOfRuns) {
      data.avg_service_time
      data.avg_service_time
     */
+    server = 1;
     tmax = 2;
     tnow=0.0;
+    l = 0;
+    l_in = 0.0;
+    l_change = 0;
+    table_max = data.table_num;
     var results = [];
     var i =0;
      events.push({
