@@ -12,7 +12,30 @@ var tmax ;
 var tnow ;
 var table_num = 0;
 
+function costomerArrive(){
+     events[0].time=3.0;
+}
 
+function costomerArriveCreate(){
+     events[0].time=3.0;
+}
+
+
+function serviceEnd(){
+     events[0].time=3.0;
+}
+
+function serviceEndCreate(){
+     events[0].time=3.0;
+}
+
+function clearTable(){
+     events[0].time=3.0;
+}
+
+function clearTableCreate(){
+     events[0].time=3.0;
+}
 
 module.exports = function (data, numOfRuns) {
     /*
@@ -24,14 +47,17 @@ module.exports = function (data, numOfRuns) {
      data.avg_service_time
     */
     tmax = 2;
+    tnow=0.0;
     var results = [];
     var i =0;
      events.push({
-            time: 2.0,
+            time: 1.0,
             code: 1
         });
 
-     while (tmax>tnow && table_num==0){
+
+
+    while ((tmax>tnow) && (table_num==0)){
             tnow = events[i].time;
             switch (events[i].code) {
                 case 1:
@@ -43,6 +69,8 @@ module.exports = function (data, numOfRuns) {
                 case 3:
                     clearTable();
                     break;
+            i++;
+            break;
                 
             }
             
@@ -65,7 +93,3 @@ module.exports = function (data, numOfRuns) {
     return results;
 };
 
-function costomerArrive() {
-   events[0].time = 3;
-   beer = 8;
-};
