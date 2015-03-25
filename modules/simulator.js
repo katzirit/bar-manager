@@ -96,6 +96,7 @@ function costomerArrive(){
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 function ezer(){
@@ -111,6 +112,9 @@ function serviceEnd(){
      if (disc() < 0.4){
 =======
 
+=======
+
+>>>>>>> parent of e589783... simulation
 function serviceEnd() {
     wait--;
     var disc = Math.random();
@@ -143,6 +147,9 @@ function serviceEnd() {
             serviceEndCreate();
         }
     } else {
+<<<<<<< HEAD
+>>>>>>> parent of e589783... simulation
+=======
 >>>>>>> parent of e589783... simulation
         clearTableCreate();
      }
@@ -180,12 +187,15 @@ module.exports = function (data, numOfRuns) {
      data.avg_service_time
     */
 <<<<<<< HEAD
+<<<<<<< HEAD
     avg_service_time = data.avg_service_time;
     service_div = data.avg_service_div;
     server = data.num_of_waiters;
     tmax = 8;
     tnow=0.0;
 =======
+=======
+>>>>>>> parent of e589783... simulation
     avg_service_time = 0.25;
     service_div = 0.1;
     server = 1;
@@ -258,6 +268,9 @@ module.exports = function (data, numOfRuns) {
         results.push({
             avg_line: l_change,
             avg_service: events[1].code,
+<<<<<<< HEAD
+>>>>>>> parent of e589783... simulation
+=======
 >>>>>>> parent of e589783... simulation
             beer: beer,
             soft_drinks: soft_drinks,
