@@ -3,10 +3,10 @@ app.controller('SimulationsAddCtrl', function ($scope, $http, $state) {
     // Simulation default values
     $scope.simulation = {
         data: {
-            costumers_per_hour: 100,
-            num_of_waiters: 5,
+            costumers_per_hour: 5,
+            num_of_waiters: 2,
             table_num: 20,
-            shift_length: 8 * 60,
+            shift_length: 8 ,
             avg_service_time: 15,
             avg_service_div: 3
         },
