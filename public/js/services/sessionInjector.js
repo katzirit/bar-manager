@@ -1,6 +1,4 @@
-/**
- * Created by Daniel on 3/7/2015.
- */
+
 app.factory('sessionInjector', function ($q, $rootScope) {
     return {
         responseError: function (e) {
