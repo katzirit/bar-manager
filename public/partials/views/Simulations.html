@@ -9,8 +9,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="simulation in simulations">
-        <td><a ui-sref="simulation({id:simulation.id})">{{simulation.id}}</a></td>
+    <tr ng-repeat="simulation in simulations | orderBy:'id'">
+        <td><a ui-sref="simulation({id:simulation.id} )">{{simulation.id}}</a></td>
         <td>{{simulation.createdAt | date:'short'}}</td>
         <td><a ui-sref="user({id:simulation.UserId})">{{simulation.User.username}}</a></td>
         <td><button ui-sref="simulation({id:simulation.id})"><i class="fa fa-list"></i> View</button></td>

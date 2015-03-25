@@ -176,6 +176,7 @@ module.exports = function(data, numOfRuns) {
      data.avg_service_time
      data.avg_service_time
     */
+    
     avg_service_time = data.avg_service_time;
     service_div = data.avg_service_div;
     server = data.num_of_waiters;
