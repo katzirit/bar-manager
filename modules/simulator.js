@@ -223,7 +223,7 @@ module.exports = function(data, numOfRuns) {
     // Dummy simulator
     results.push({
         avg_line: data.num_of_waiters,
-    u1 = Math.random();
+        avg_service: ((avg_service_time - 1) + ((service_div * u))),
         beer: beer,
         soft_drinks: soft_drinks,
         booz: booz,
