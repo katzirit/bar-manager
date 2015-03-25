@@ -9,7 +9,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="simulation in simulations | orderBy:'id'">
+    <tr ng-repeat="simulation in simulations">
         <td><a ui-sref="simulation({id:simulation.id} )">{{simulation.id}}</a></td>
         <td>{{simulation.createdAt | date:'short'}}</td>
         <td><a ui-sref="user({id:simulation.UserId})">{{simulation.User.username}}</a></td>
