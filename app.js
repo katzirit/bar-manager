@@ -20,7 +20,7 @@ var app = module.exports = express();
 /**
  * Configuration
  */
-app.set('port', 80);
+app.set('port', proccess.env.PORT || 80);
 app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
